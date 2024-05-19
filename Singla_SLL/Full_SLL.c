@@ -142,7 +142,6 @@ void delete_first()
     {
         struct node *temp = start;
         start=temp->next;
-        temp->next=NULL;
     }
 }
 

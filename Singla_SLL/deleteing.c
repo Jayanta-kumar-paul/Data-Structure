@@ -56,7 +56,7 @@ void delete_end()
     // else if (start->next == NULL)
     // {
     //     // Only one node in the list
-    //     free(start);
+        // free(start);
     //     start = NULL;
     // }
     else
