@@ -251,7 +251,59 @@ void delete_end()
         }
 
         prev->next = NULL;
-        // free(temp);
+        free(temp);
+    }
+}
+
+void delete_after()
+{
+    int num;
+    printf("Enter the value after the data should be deleted: ");
+    scanf("%d", &num);
+
+    if (start == NULL)
+    {
+        printf("List is empty or has only one node.\n");
+    }
+    else
+    {
+        struct Node *temp = start;
+        struct Node *prev = start; // Initialize prev pointer
+
+        while (prev->info != num)
+        {
+
+            prev = temp; // Update prev pointer
+            temp = temp->next;
+        }
+        prev->next = temp->next;
+        free(temp);
+    }
+}
+
+void delete_perticular()
+{
+    int num;
+    printf("Enter the perticular value the data should be deleted: ");
+    scanf("%d", &num);
+
+    if (start == NULL)
+    {
+        printf("List is empty or has only one node.\n");
+    }
+    else
+    {
+        struct Node *temp = start;
+        struct Node *prev = start; // Initialize prev pointer
+
+        while (temp->info != num)
+        {
+
+            prev = temp; // Update prev pointer
+            temp = temp->next;
+        }
+        prev->next = temp->next;
+        free(temp);
     }
 }
 
@@ -289,7 +341,9 @@ int main()
         printf("press 7. search any node\n");
         printf("press 8. Delete a first node\n");
         printf("press 9. Delete a last node\n");
-        printf("press 10. Exit\n");
+        printf("press 10. Delete a node after a given node\n");
+        printf("press 11. Delete a perticular node\n");
+        printf("press 12. Exit\n");
         scanf("%d", &choice);
 
         switch (choice)
@@ -321,6 +375,12 @@ int main()
             delete_end();
             break;
         case 10:
+            delete_after();
+            break;
+        case 11:
+            delete_perticular();
+            break;
+        case 12:
             exit(0);
         default:
             printf("Please enter a valid choice.\n");

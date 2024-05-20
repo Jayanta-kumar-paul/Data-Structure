@@ -42,8 +42,8 @@ void delete_first()
     else
     {
         struct node *temp = start;
-        start=temp->next;
-        temp->next=NULL;
+        start = temp->next;
+        temp->next = NULL;
     }
 }
 
@@ -56,7 +56,7 @@ void delete_end()
     // else if (start->next == NULL)
     // {
     //     // Only one node in the list
-        // free(start);
+    // free(start);
     //     start = NULL;
     // }
     else
@@ -71,49 +71,61 @@ void delete_end()
         }
 
         prev->next = NULL;
-       // free(temp);
+        free(temp);
     }
 }
 
-void delete_before()
+void delete_after()
 {
-    int num, p = 0;
-    printf("Enter the value after which the data should be deleted: ");
+    int num;
+    printf("Enter the perticular value the data should be deleted: ");
     scanf("%d", &num);
 
-    if (start == NULL || start->next == NULL)
+    if (start == NULL)
     {
         printf("List is empty or has only one node.\n");
     }
     else
     {
         struct node *temp = start;
-        struct node *prev = NULL; // Initialize prev pointer
+        struct node *prev = start; // Initialize prev pointer
 
-        while (temp->next != NULL)
+        while (prev->info != num)
         {
-            if (temp->next->info == num)
-            {
-                p = 1;
-                break;
-            }
+
             prev = temp; // Update prev pointer
             temp = temp->next;
         }
-
-        if (p == 0)
-        {
-            printf("Value %d or its previous node not found.\n", num);
-        }
-        else
-        {
-            struct node *toDelete = prev->next;
-            prev->next = toDelete->next; // Update the previous node's next pointer
-            free(toDelete); // Free memory of the previous node
-        }
+        prev->next = temp->next;
+        free(temp);
     }
 }
 
+void delete_perticular()
+{
+    int num;
+    printf("Enter the perticular value the data should be deleted: ");
+    scanf("%d", &num);
+
+    if (start == NULL)
+    {
+        printf("List is empty or has only one node.\n");
+    }
+    else
+    {
+        struct node *temp = start;
+        struct node *prev = start; // Initialize prev pointer
+
+        while (temp->info != num)
+        {
+
+            prev = temp; // Update prev pointer
+            temp = temp->next;
+        }
+        prev->next = temp->next;
+        free(temp);
+    }
+}
 
 void display()
 {
@@ -136,15 +148,16 @@ void display()
 int main()
 {
     int choice = 0;
-    while (choice != 5)
+    while (choice != 7)
     {
         printf("\nEnter your choice:\n");
         printf("1. Create & insert a list\n");
         printf("2. Display the list\n");
         printf("3. delete a first node\n");
         printf("4. delete a last node\n");
-        printf("5. delete a before node\n");
-        printf("6. Exit\n");
+        printf("5. delete a after given node\n");
+        printf("6. Delete a perticular node\n");
+        printf("7. Exit\n");
         scanf("%d", &choice);
 
         switch (choice)
@@ -162,9 +175,12 @@ int main()
             delete_end();
             break;
         case 5:
-            delete_before();
+            delete_after();
             break;
         case 6:
+            delete_perticular();
+            break;
+        case 7:
             exit(0);
         default:
             printf("Please enter a valid choice.\n");
