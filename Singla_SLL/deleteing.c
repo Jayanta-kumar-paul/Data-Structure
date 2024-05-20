@@ -75,6 +75,46 @@ void delete_end()
     }
 }
 
+void delete_before()
+{
+    int num, p = 0;
+    printf("Enter the value after which the data should be deleted: ");
+    scanf("%d", &num);
+
+    if (start == NULL || start->next == NULL)
+    {
+        printf("List is empty or has only one node.\n");
+    }
+    else
+    {
+        struct node *temp = start;
+        struct node *prev = NULL; // Initialize prev pointer
+
+        while (temp->next != NULL)
+        {
+            if (temp->next->info == num)
+            {
+                p = 1;
+                break;
+            }
+            prev = temp; // Update prev pointer
+            temp = temp->next;
+        }
+
+        if (p == 0)
+        {
+            printf("Value %d or its previous node not found.\n", num);
+        }
+        else
+        {
+            struct node *toDelete = prev->next;
+            prev->next = toDelete->next; // Update the previous node's next pointer
+            free(toDelete); // Free memory of the previous node
+        }
+    }
+}
+
+
 void display()
 {
     struct node *temp = start;
@@ -103,7 +143,8 @@ int main()
         printf("2. Display the list\n");
         printf("3. delete a first node\n");
         printf("4. delete a last node\n");
-        printf("5. Exit\n");
+        printf("5. delete a before node\n");
+        printf("6. Exit\n");
         scanf("%d", &choice);
 
         switch (choice)
@@ -121,6 +162,9 @@ int main()
             delete_end();
             break;
         case 5:
+            delete_before();
+            break;
+        case 6:
             exit(0);
         default:
             printf("Please enter a valid choice.\n");

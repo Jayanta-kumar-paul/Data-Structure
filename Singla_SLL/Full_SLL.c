@@ -132,6 +132,50 @@ void insert_before()
     }
 }
 
+void insert_after()
+{
+    int item, num, p = 0;
+    printf("Enter the value of new_node: ");
+    scanf("%d", &item);
+    printf("Enter the value after which the data should be inserted: ");
+    scanf("%d", &num);
+
+    struct Node *new_node = (struct Node *)malloc(sizeof(struct Node));
+    new_node->info = item;
+    new_node->next = NULL;
+
+    if (start == NULL)
+    {
+        start = new_node;
+    }
+    else
+    {
+        struct Node *temp = start;
+        struct Node *prev = NULL; // Initialize prev pointer
+
+        while (temp != NULL)
+        {
+            if (temp->info == num)
+            {
+                p = 1;
+                break;
+            }
+            prev = temp; // Update prev pointer
+            temp = temp->next;
+        }
+
+        if (p == 0)
+        {
+            printf("Value %d not found.\n", num);
+        }
+        else
+        {
+            new_node->next = temp->next;
+            temp->next = new_node; // Update the current node's next pointer
+        }
+    }
+}
+
 void search()
 {
     int num, p = 0;
@@ -233,18 +277,19 @@ void display()
 int main()
 {
     int choice = 0;
-    while (choice != 9)
+    while (choice != 10)
     {
-        printf("Enter your choice:\n");
+        printf("*****Enter your choice*****\n");
         printf("press 1. Create & insert a list\n");
         printf("press 2. Display the list\n");
         printf("press 3. Add a node at the begginning\n");
         printf("press 4. Add a node at the end\n");
         printf("press 5. Add a node before a given node\n");
-        printf("press 6. search any node\n");
-        printf("press 7. Delete a first node\n");
-        printf("press 8. Delete a last node\n");
-        printf("press 9. Exit\n");
+        printf("press 6. Add a node after a given node\n");
+        printf("press 7. search any node\n");
+        printf("press 8. Delete a first node\n");
+        printf("press 9. Delete a last node\n");
+        printf("press 10. Exit\n");
         scanf("%d", &choice);
 
         switch (choice)
@@ -265,14 +310,17 @@ int main()
             insert_before();
             break;
         case 6:
-            search();
+            insert_after();
             break;
         case 7:
-            delete_first();
+            search();
+            break;
         case 8:
+            delete_first();
+        case 9:
             delete_end();
             break;
-        case 9:
+        case 10:
             exit(0);
         default:
             printf("Please enter a valid choice.\n");
