@@ -48,7 +48,7 @@ void insert_beg()
     }
     else
     {
-            start=new_node;
+        start = new_node;
     }
 }
 
@@ -71,7 +71,7 @@ void insert_end()
         struct Node *prev = start;
         while (temp != NULL)
         {
-            prev=temp;
+            prev = temp;
             temp = temp->next;
         }
         prev->next = new_node;
@@ -132,6 +132,42 @@ void insert_before()
     }
 }
 
+void search()
+{
+    int num, p = 0;
+    printf("Enter the search value: ");
+    scanf("%d", &num);
+
+    if (start == NULL)
+    {
+        printf("List is empty.\n");
+    }
+    else
+    {
+        struct Node *temp = start;
+        while (temp != NULL)
+        {
+            if (num == temp->info)
+            {
+                p = 1;
+                break;
+            }
+            else
+            {
+                temp = temp->next;
+            }
+        }
+        if (p == 0)
+        {
+            printf("\nValue %d Not found.\n\n", num);
+        }
+        else
+        {
+            printf("\nValue %d is Found.\n\n", num);
+        }
+    }
+}
+
 void delete_first()
 {
     if (start == NULL)
@@ -140,8 +176,9 @@ void delete_first()
     }
     else
     {
-        struct node *temp = start;
-        start=temp->next;
+        struct Node *temp = start;
+        start = temp->next;
+        temp->next = NULL;
     }
 }
 
@@ -155,7 +192,7 @@ void delete_end()
     else if (start->next == NULL)
     {
         // Only one node in the list
-       // free(start);
+        // free(start);
         start = NULL;
     }
     else
@@ -170,7 +207,7 @@ void delete_end()
         }
 
         prev->next = NULL;
-       // free(temp);
+        // free(temp);
     }
 }
 
@@ -189,14 +226,14 @@ void display()
             printf("%d -> ", temp->info);
             temp = temp->next;
         }
-        printf("NULL\n");
+        printf("NULL\n\n");
     }
 }
 
 int main()
 {
     int choice = 0;
-    while (choice != 8)
+    while (choice != 9)
     {
         printf("Enter your choice:\n");
         printf("press 1. Create & insert a list\n");
@@ -204,9 +241,10 @@ int main()
         printf("press 3. Add a node at the begginning\n");
         printf("press 4. Add a node at the end\n");
         printf("press 5. Add a node before a given node\n");
-         printf("press 6. Delete a first node\n");
-        printf("press 7. Delete a last node\n");
-        printf("press 8. Exit\n");
+        printf("press 6. search any node\n");
+        printf("press 7. Delete a first node\n");
+        printf("press 8. Delete a last node\n");
+        printf("press 9. Exit\n");
         scanf("%d", &choice);
 
         switch (choice)
@@ -226,12 +264,15 @@ int main()
         case 5:
             insert_before();
             break;
-            case 6:
-            delete_first();
+        case 6:
+            search();
+            break;
         case 7:
+            delete_first();
+        case 8:
             delete_end();
             break;
-        case 8:
+        case 9:
             exit(0);
         default:
             printf("Please enter a valid choice.\n");
