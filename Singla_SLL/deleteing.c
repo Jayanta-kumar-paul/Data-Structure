@@ -75,6 +75,45 @@ void delete_end()
     }
 }
 
+void delete_before()
+{
+    int item;
+    printf("Enter the perticular value the data should be deleted: ");
+    scanf("%d", &item);
+    struct node *temp = start;
+    if (start == NULL)
+    {
+        printf("List is empty or has only one node.\n");
+    }
+
+    else if (temp->info == item)
+    {
+        printf("Delete before list node not possible\n");
+    }
+
+    else
+    {
+        struct node *temp = start;
+        struct node *prev = start; // Initialize prev pointer
+
+        while (temp->next != NULL)
+        {
+            if (temp->next->info != item)
+            {
+
+                prev = temp; // Update prev pointer
+                temp = temp->next;
+            }
+            else
+            {
+                prev->next = temp->next;
+                free(temp);
+                temp->next = NULL;
+            }
+        }
+    }
+}
+
 void delete_after()
 {
     int num;
@@ -148,16 +187,17 @@ void display()
 int main()
 {
     int choice = 0;
-    while (choice != 7)
+    while (choice != 8)
     {
         printf("\nEnter your choice:\n");
         printf("1. Create & insert a list\n");
         printf("2. Display the list\n");
         printf("3. delete a first node\n");
         printf("4. delete a last node\n");
-        printf("5. delete a after given node\n");
-        printf("6. Delete a perticular node\n");
-        printf("7. Exit\n");
+        printf("5. delete a before given node\n");
+        printf("6. delete a after given node\n");
+        printf("7. Delete a perticular node\n");
+        printf("8. Exit\n");
         scanf("%d", &choice);
 
         switch (choice)
@@ -175,12 +215,15 @@ int main()
             delete_end();
             break;
         case 5:
-            delete_after();
+            delete_before();
             break;
         case 6:
-            delete_perticular();
+            delete_after();
             break;
         case 7:
+            delete_perticular();
+            break;
+        case 8:
             exit(0);
         default:
             printf("Please enter a valid choice.\n");
