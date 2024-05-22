@@ -10,7 +10,7 @@ struct Node {
 struct Node* start = NULL;
 
 // Function to insert a new node at the end of the list
-void insert()
+void create_ll()
 {
     struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
     int item;
@@ -68,7 +68,7 @@ int main()
         switch (choice) 
         {
         case 1:
-            insert();
+            create_ll();
             break;
         case 2:
             display();

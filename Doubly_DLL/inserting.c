@@ -37,6 +37,28 @@ void create_ll()
     }
 }
 
+void insert_beg()
+{
+    struct Node *new_node = (struct Node *)malloc(sizeof(struct Node));
+    int item;
+    printf("Enter the value: ");
+    scanf("%d", &item);
+    new_node->info = item;
+    new_node->next = start;
+    new_node->prev =NULL;
+
+    if (start == NULL)
+    {
+        start = new_node;
+    }
+    else
+    {
+       // struct Node* temp=start;
+        start->prev =new_node;
+    }
+        start = new_node;
+}
+
 // Function to display the list elements
 void display()
 {
@@ -63,9 +85,10 @@ int main()
     while (choice != 3)
     {
         printf("\nEnter your choice:\n");
-        printf("1. Create & insert a node\n");
-        printf("2. Display list\n");
-        printf("3. Exit\n");
+        printf("press 1. Create & insert a node\n");
+        printf("press 2. Display list\n");
+        printf("press 3. Add a node at the begginning\n");
+        printf("press 4. Exit\n");
         scanf("%d", &choice);
         switch (choice)
         {
@@ -75,9 +98,11 @@ int main()
         case 2:
             display();
             break;
-        case 3:
-            exit(0);
+     case 3:
+            insert_beg();
             break;
+        case 4:
+            exit(0);
         default:
             printf("Please enter a valid choice.\n");
         }
