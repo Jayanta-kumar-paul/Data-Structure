@@ -291,7 +291,7 @@ void delete_before()
                 temp->next = NULL;
             }
         }
-    }  
+    }
 }
 
 void delete_after()
@@ -311,7 +311,6 @@ void delete_after()
 
         while (prev->info != num)
         {
-
             prev = temp; // Update prev pointer
             temp = temp->next;
         }
@@ -414,7 +413,7 @@ int main()
         case 9:
             delete_end();
             break;
-            case 10:
+        case 10:
             delete_before();
             break;
         case 11:
