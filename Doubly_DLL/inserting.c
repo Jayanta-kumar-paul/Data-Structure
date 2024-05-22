@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Define the structure for a node in the DLL
 struct Node
 {
     int info;
@@ -11,7 +10,6 @@ struct Node
 
 struct Node *start = NULL;
 
-// Function to insert a new node at the end of the list
 void create_ll()
 {
     struct Node *new_node = (struct Node *)malloc(sizeof(struct Node));
@@ -45,7 +43,7 @@ void insert_beg()
     scanf("%d", &item);
     new_node->info = item;
     new_node->next = start;
-    new_node->prev =NULL;
+    new_node->prev = NULL;
 
     if (start == NULL)
     {
@@ -53,10 +51,35 @@ void insert_beg()
     }
     else
     {
-       // struct Node* temp=start;
-        start->prev =new_node;
-    }
+        start->prev = new_node;
         start = new_node;
+    }
+}
+
+void insert_end()
+{
+    struct Node *new_node = (struct Node *)malloc(sizeof(struct Node));
+    int item;
+    printf("Enter the value: ");
+    scanf("%d", &item);
+    if (start == NULL)
+    {
+        start = new_node;
+    }
+    else
+    {
+        struct Node *temp = start;
+        new_node->info = item;
+        new_node->next = NULL;
+        new_node->prev = NULL;
+
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
+        }
+        new_node->prev = temp;
+        temp->next = new_node;
+    }
 }
 
 // Function to display the list elements
@@ -82,13 +105,14 @@ void display()
 int main()
 {
     int choice = 0;
-    while (choice != 3)
+    while (choice != 5)
     {
         printf("\nEnter your choice:\n");
         printf("press 1. Create & insert a node\n");
         printf("press 2. Display list\n");
         printf("press 3. Add a node at the begginning\n");
-        printf("press 4. Exit\n");
+        printf("press 4. Add a node at the end\n");
+        printf("press 5. Exit\n");
         scanf("%d", &choice);
         switch (choice)
         {
@@ -98,10 +122,13 @@ int main()
         case 2:
             display();
             break;
-     case 3:
+        case 3:
             insert_beg();
             break;
         case 4:
+            insert_end();
+            break;
+        case 5:
             exit(0);
         default:
             printf("Please enter a valid choice.\n");
