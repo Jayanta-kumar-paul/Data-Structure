@@ -107,7 +107,7 @@ int main()
     int choice = 0;
     while (choice != 5)
     {
-        printf("\nEnter your choice:\n");
+        printf("\n*******Enter your choice*******\n");
         printf("press 1. Create & insert a node\n");
         printf("press 2. Display list\n");
         printf("press 3. Add a node at the begginning\n");

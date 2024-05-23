@@ -1,1 +1,0 @@
- temp->prev =new_node;
