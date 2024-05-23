@@ -212,7 +212,6 @@ void search()
     }
 }
 
-// Function to display the list elements
 void display()
 {
     struct Node *temp = start;
