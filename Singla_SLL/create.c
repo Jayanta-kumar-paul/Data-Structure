@@ -2,7 +2,8 @@
 #include <stdlib.h>
 
 // Define the structure for a node in the SLL
-struct Node {
+struct Node 
+{
     int info;
     struct Node* next;
 };
