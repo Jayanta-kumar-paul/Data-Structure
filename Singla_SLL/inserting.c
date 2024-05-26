@@ -228,7 +228,7 @@ void display()
 int main()
 {
     int choice = 0;
-    while (choice != 7)
+    while (choice != 8)
     {
         printf("\n*****Enter your choice*****\n");
         printf("press 1. Create & insert a list\n");
