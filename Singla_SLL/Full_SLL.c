@@ -176,6 +176,36 @@ void insert_after()
     }
 }
 
+void insert_any_location()
+{
+    struct Node *new_node = (struct Node *)malloc(sizeof(struct Node));
+    int item, pos;
+    printf("Enter the value: ");
+    scanf("%d", &item);
+    printf("Enter the position the data should be inserted: ");
+    scanf("%d", &pos);
+    new_node->info = item;
+    new_node->next = NULL;
+
+    if (start == NULL)
+    {
+        start = new_node;
+    }
+    else
+    {
+        struct Node *temp = start;
+        // struct Node *prev = start;
+        pos--;
+        while (pos != 1)
+        {
+            temp = temp->next;
+            pos--;
+        }
+        new_node->next = temp->next;
+        temp->next = new_node;
+    }
+}
+
 void search()
 {
     int num, p = 0;
@@ -331,11 +361,11 @@ void delete_any_location()
     {
         printf("List is empty or has only one node.\n");
     }
-    else if(pos==1)
+    else if (pos == 1)
     {
-        start=temp->next;
+        start = temp->next;
         free(temp);
-        temp=NULL;
+        temp = NULL;
     }
     else
     {
@@ -399,7 +429,7 @@ void display()
 int main()
 {
     int choice = 0;
-    while (choice != 14)
+    while (choice != 15)
     {
         printf("*****Enter your choice*****\n");
         printf("press 1. Create & insert a list\n");
@@ -408,14 +438,15 @@ int main()
         printf("press 4. Add a node at the end\n");
         printf("press 5. Add a node before a given node\n");
         printf("press 6. Add a node after a given node\n");
-        printf("press 7. search any node\n");
-        printf("press 8. Delete a first node\n");
-        printf("press 9. Delete a last node\n");
-        printf("press 10. Delete a node before a given node\n");
-        printf("press 11. Delete a node after a given node\n");
-        printf("press 12. delete a any location node\n");
-        printf("press 13. Delete a perticular node\n");
-        printf("press 14. Exit\n");
+        printf("press 7. Add a node at any location\n");
+        printf("press 8. search any node\n");
+        printf("press 9. Delete a first node\n");
+        printf("press 10. Delete a last node\n");
+        printf("press 11. Delete a node before a given node\n");
+        printf("press 12. Delete a node after a given node\n");
+        printf("press 13. delete a any location node\n");
+        printf("press 14. Delete a perticular node\n");
+        printf("press 15. Exit\n");
         scanf("%d", &choice);
 
         switch (choice)
@@ -439,26 +470,30 @@ int main()
             insert_after();
             break;
         case 7:
-            search();
+            insert_any_location();
             break;
         case 8:
-            delete_first();
+            search();
+            break;
         case 9:
-            delete_end();
+            delete_first();
             break;
         case 10:
-            delete_before();
+            delete_end();
             break;
         case 11:
+            delete_before();
+            break;
+        case 12:
             delete_after();
             break;
-            case 12:
+        case 13:
             delete_any_location();
             break;
-        case 13:
+        case 14:
             delete_perticular();
             break;
-        case 14:
+        case 15:
             exit(0);
         default:
             printf("Please enter a valid choice.\n");
