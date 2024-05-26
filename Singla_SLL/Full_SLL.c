@@ -319,6 +319,38 @@ void delete_after()
     }
 }
 
+void delete_any_location()
+{
+    int pos;
+    printf("Enter the position the data should be inserted: ");
+    scanf("%d", &pos);
+    struct Node *temp = start;
+    struct Node *prev = start;
+
+    if (start == NULL)
+    {
+        printf("List is empty or has only one node.\n");
+    }
+    else if(pos==1)
+    {
+        start=temp->next;
+        free(temp);
+        temp=NULL;
+    }
+    else
+    {
+        while (pos != 1)
+        {
+            prev = temp;
+            temp = temp->next;
+            pos--;
+        }
+        prev->next = temp->next;
+        free(temp);
+        temp = NULL;
+    }
+}
+
 void delete_perticular()
 {
     int num;
@@ -367,7 +399,7 @@ void display()
 int main()
 {
     int choice = 0;
-    while (choice != 13)
+    while (choice != 14)
     {
         printf("*****Enter your choice*****\n");
         printf("press 1. Create & insert a list\n");
@@ -381,8 +413,9 @@ int main()
         printf("press 9. Delete a last node\n");
         printf("press 10. Delete a node before a given node\n");
         printf("press 11. Delete a node after a given node\n");
-        printf("press 12. Delete a perticular node\n");
-        printf("press 13. Exit\n");
+        printf("press 12. delete a any location node\n");
+        printf("press 13. Delete a perticular node\n");
+        printf("press 14. Exit\n");
         scanf("%d", &choice);
 
         switch (choice)
@@ -419,10 +452,13 @@ int main()
         case 11:
             delete_after();
             break;
-        case 12:
-            delete_perticular();
+            case 12:
+            delete_any_location();
             break;
         case 13:
+            delete_perticular();
+            break;
+        case 14:
             exit(0);
         default:
             printf("Please enter a valid choice.\n");
