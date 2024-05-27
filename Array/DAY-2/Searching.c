@@ -38,11 +38,11 @@ int main()
 
     if(found==0)
     {
-        printf("element not found .");
+        printf("Element not found .\n");
     }
     else
     {
-          printf("element found .");
+          printf("Element found in the array.\n");
     }
 
     return 0;

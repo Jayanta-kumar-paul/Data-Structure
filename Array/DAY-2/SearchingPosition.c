@@ -1,49 +1,49 @@
 #include <stdio.h>
-int main()
 
+int main()
 {
-    // create file
-    int a[' '], size ,i,item;
-    printf("Enter the size of array :");
+    int a[100]; // Assuming a maximum array size of 100
+    int size, i, item;
+
+    printf("Enter the size of the array: ");
     scanf("%d", &size);
 
-    // data insert
-    for (int i = 0; i <= size - 1; i++)
+    // Data insert
+    for (i = 0; i < size; i++)
     {
-        printf("Enter the data a[%d] =", i);
+        printf("Enter the data a[%d]: ", i);
         scanf("%d", &a[i]);
     }
 
-    // display the normal array
-    printf("Your array is :");
-    for (int i = 0; i <= size - 1; i++)
+    // Display the normal array
+    printf("Your array is: ");
+    for (i = 0; i < size; i++)
     {
         printf("%3d", a[i]);
     }
 
-    // search element 
-    printf("\n Enter the search element :");
-    scanf("%d",&item);
+    // Search element
+    printf("\nEnter the search element: ");
+    scanf("%d", &item);
 
-    int p=0,pos;
+    int found = 0;
 
-    for(int i=0;i<size;i++)
+    for (i = 0; i < size; i++)
     {
-        if(item==a[i]);
+        if (a[i] == item)
         {
-            p=1;
-            pos=i+1;
+            found = 1;
             break;
         }
     }
 
-    if(p==0)
+    if (found == 0)
     {
-        printf("element not found .");
+        printf("Element not found.\n");
     }
     else
     {
-        printf("The search is successful and the element found in %d position",pos);
+        printf("The search is successful, and the element is found at position %d\n", i + 1);
     }
 
     return 0;
