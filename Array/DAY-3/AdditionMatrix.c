@@ -42,7 +42,7 @@ int main()
         {
             for (int j = 0; j <= c2 - 1; j++)
             {
-                printf("Enter element of a[%d][%d]:", i, j);
+                printf("Enter element of b[%d][%d]:", i, j);
                 scanf("%d", &b[i][j]);
             }
         }

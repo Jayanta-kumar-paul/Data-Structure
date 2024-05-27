@@ -65,7 +65,7 @@ int main()
             }
         }
 
-        printf("Your addition matrix is :\n");
+        printf("Your Subtraction matrix is :\n");
         for (int i = 0; i <= r2 - 1; i++)
         {
             for (int j = 0; j <= c2 - 1; j++)
