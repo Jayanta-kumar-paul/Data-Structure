@@ -220,7 +220,7 @@ int main()
     int choice = 0;
     while (choice != 9)
     {
-        printf("\nEnter your choice:\n");
+        printf("\n*****Enter your choice*****\n");
         printf("1. Create & insert a list\n");
         printf("2. Display the list\n");
         printf("3. delete a first node\n");

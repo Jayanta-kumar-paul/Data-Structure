@@ -37,6 +37,24 @@ void create_ll()
     }
 }
 
+void delete_first()
+{
+    if (start == NULL)
+    {
+        printf("List is empty. Cannot delete.\n");
+    }
+    else
+    {
+        struct Node *temp = start;
+        start = temp->next;
+        if (start != NULL)
+        {
+            start->prev = NULL;
+        }
+        free(temp); // Free memory for the removed node
+    }
+}
+
 // Function to display the list elements
 void display()
 {
@@ -82,9 +100,9 @@ int main()
         case 2:
             display();
             break;
-        // case 3:
-        //     delete_first();
-        //     break;
+        case 3:
+            delete_first();
+            break;
         // case 4:
         //     delete_end();
         //     break;
