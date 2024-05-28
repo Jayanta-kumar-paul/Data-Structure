@@ -60,13 +60,20 @@ void display()
 int main()
 {
     int choice = 0;
-    while (choice != 3)
+    while (choice != 9)
     {
-        printf("\n******Enter your choice******\n");
-        printf("1. Create & insert a node\n");
-        printf("2. Display list\n");
-        printf("3. Exit\n");
+        printf("\n*****Enter your choice*****\n");
+        printf("1. Create & insert a list\n");
+        printf("2. Display the list\n");
+        printf("3. delete a first node\n");
+        printf("4. delete a last node\n");
+        printf("5. delete a before given node\n");
+        printf("6. delete a after given node\n");
+        printf("7. delete a any location node\n");
+        printf("8. Delete a perticular node\n");
+        printf("9. Exit\n");
         scanf("%d", &choice);
+
         switch (choice)
         {
         case 1:
@@ -75,9 +82,26 @@ int main()
         case 2:
             display();
             break;
-        case 3:
+        // case 3:
+        //     delete_first();
+        //     break;
+        // case 4:
+        //     delete_end();
+        //     break;
+        // case 5:
+        //     delete_before();
+        //     break;
+        // case 6:
+        //     delete_after();
+        //     break;
+        // case 7:
+        //     delete_any_location();
+        //     break;
+        // case 8:
+        //     delete_perticular();
+        //     break;
+        case 9:
             exit(0);
-            break;
         default:
             printf("Please enter a valid choice.\n");
         }
