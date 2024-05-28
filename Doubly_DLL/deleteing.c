@@ -62,7 +62,7 @@ int main()
     int choice = 0;
     while (choice != 3)
     {
-        printf("\n*****Enter your choice*****\n");
+        printf("\n******Enter your choice******\n");
         printf("1. Create & insert a node\n");
         printf("2. Display list\n");
         printf("3. Exit\n");
