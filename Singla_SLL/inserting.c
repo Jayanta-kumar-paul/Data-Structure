@@ -93,6 +93,7 @@ void insert_any_location()
     {
         start = new_node;
     }
+    
     else
     {
         struct Node *temp = start;

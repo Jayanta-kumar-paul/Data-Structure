@@ -176,6 +176,50 @@ void insert_after()
     }
 }
 
+void insert_any_location()
+{
+    struct Node *new_node = (struct Node *)malloc(sizeof(struct Node));
+    int item, pos;
+
+    printf("Enter the value: ");
+    scanf("%d", &item);
+    printf("Enter the position where the data should be inserted: ");
+    scanf("%d", &pos);
+
+    new_node->info = item;
+    new_node->next = NULL;
+    new_node->prev = NULL;
+
+    if (start == NULL)
+    {
+        start = new_node;
+    }
+    else
+    {
+        struct Node *temp = start;
+        pos--; // Adjust position to 0-based index
+        while (pos != 1 && temp != NULL)
+        {
+            temp = temp->next;
+            pos--;
+        }
+        if (temp != NULL)
+        {
+            new_node->next = temp->next;
+            new_node->prev = temp;
+            if (temp->next != NULL)
+            {
+                temp->next->prev = new_node;
+            }
+            temp->next = new_node;
+        }
+        else
+        {
+            printf("Invalid position. Node not inserted.\n");
+        }
+    }
+}
+
 void search()
 {
     int num, p = 0;
@@ -203,11 +247,11 @@ void search()
         }
         if (p == 0)
         {
-             printf("Value %d Not found.\n", num);
+            printf("Value %d Not found.\n", num);
         }
         else
         {
-            printf("Value %d is Found.\n",num);
+            printf("Value %d is Found.\n", num);
         }
     }
 }
@@ -234,7 +278,7 @@ void display()
 int main()
 {
     int choice = 0;
-    while (choice != 8)
+    while (choice != 9)
     {
         printf("\n*******Enter your choice*******\n");
         printf("press 1. Create & insert a node\n");
@@ -243,8 +287,9 @@ int main()
         printf("press 4. Add a node at the end\n");
         printf("press 5. Add a node before a given node\n");
         printf("press 6. Add a node after a given node\n");
-        printf("press 7. Search\n");
-        printf("press 8. Exit\n");
+        printf("press 7. Add a node at any location\n");
+        printf("press 8. Search\n");
+        printf("press 9. Exit\n");
         scanf("%d", &choice);
 
         switch (choice)
@@ -268,9 +313,12 @@ int main()
             insert_after();
             break;
         case 7:
-            search();
+            insert_any_location();
             break;
         case 8:
+            search();
+            break;
+        case 9:
             exit(0);
         default:
             printf("Please enter a valid choice.\n");
