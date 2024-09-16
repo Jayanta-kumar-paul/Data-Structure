@@ -2,7 +2,7 @@
 
 void bubblesort(int arr[], int n)
 {
-    //int i, j, temp;
+    // int i, j, temp;
     for (int i = 0; i < n - 1; i++)
     {
         for (int j = 0; j < n - i - 1; j++)
@@ -38,7 +38,7 @@ int main()
         scanf("%d", &arr[i]);
     }
     printf("Before array :");
-    print(arr,n);
+    print(arr, n);
 
     bubblesort(arr, n);
 
