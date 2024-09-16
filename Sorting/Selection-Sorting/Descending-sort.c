@@ -14,7 +14,7 @@ void insertion_sort_descending(int a[], int n) {
 }
 
 void print(int a[], int n) {
-    int i;
+    int i; 
     for (i = 0; i < n; i++) {
         printf("%3d", a[i]);
     }
